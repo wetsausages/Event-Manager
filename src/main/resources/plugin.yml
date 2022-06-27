@@ -1,0 +1,23 @@
+name: EventMgr
+version: '${project.version}'
+main: avas.eventmgr.EventManager
+api-version: 1.19
+authors: [ 69 ]
+description: Event manager for AVAS.cc
+website: avas.cc
+commands:
+  help:
+    description: Shows helpful information on how the crystal PvP event works.
+    usage: /help
+    aliases: [h, info, i]
+  stats:
+    description: Shows player's kills and remaining lives.
+    usage: /stats
+    alias: s
+  fight:
+    description: Challenges another player to a fight.
+    usage: /fight [player]
+    alias: f
+  startfight:
+    description: Starts a fight when the challenged player accepts.
+    usage: /startfight [player] [player]
