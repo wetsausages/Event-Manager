@@ -19,7 +19,7 @@ public class Fight implements CommandExecutor {
             return true;
         }
         if(sender == Bukkit.getPlayer(args[0])) {
-            sender.sendMessage("Why are you hitting yourself?");
+            sender.sendMessage("Stop hitting yourself.");
             return true;
         }
         if(sender instanceof ConsoleCommandSender) {

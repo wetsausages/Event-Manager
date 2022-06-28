@@ -6,11 +6,15 @@ import avas.eventmgr.Commands.StartFight;
 import avas.eventmgr.Commands.Stats;
 import avas.eventmgr.Handlers.Connection;
 import avas.eventmgr.Handlers.Players;
+import avas.eventmgr.Managers.LogManager;
 import avas.eventmgr.Managers.PlayerDataManager;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 //TODO: Kits and tp coords when map is made
 
@@ -22,7 +26,12 @@ public final class EventManager extends JavaPlugin implements Listener {
     public void onEnable() {
         INSTANCE = this;
 
-        if(!getDataFolder().exists()) getDataFolder().mkdirs();
+        if(!getDataFolder().exists()) {
+            File dataFolders = new File(getDataFolder() + "/logs");
+            dataFolders.mkdirs();
+        }
+
+        LogManager.logsDir = new File(getDataFolder() + "/logs");
         PlayerDataManager.load();
 
         loadEvents(new Connection(), new Players());

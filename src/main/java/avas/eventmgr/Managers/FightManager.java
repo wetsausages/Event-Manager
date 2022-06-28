@@ -9,18 +9,27 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 public class FightManager {
-    public static boolean[] cells = {false, false, false, false, false, false, false, false};
-    public static String[][] fighters = {{"",""},{"",""},{"",""},{"",""},{"",""},{"",""},{"",""},{"",""}};
+    public static boolean[] cells = {false, false, false, false, false, false, false, false, false};
+    public static String[][] fighters = {{"",""},{"",""},{"",""},{"",""},{"",""},{"",""},{"",""},{"",""},{"",""}};
 
     public static void RequestFight(Player sender, Player recipient) {
+        //Logging
+        LogManager.PrintLn(sender.getName(), "TO    " + recipient.getName());
+        LogManager.PrintLn(recipient.getName(), "FROM  " + sender.getName());
+
+        //Send request
         TextComponent accept = new TextComponent("Click §ahere§r to accept");
-        accept.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/startfight " + sender.getName()));
+        accept.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/startfight " + sender.getName() + " " + recipient.getName() + " a b"));
         sender.sendRawMessage("You have challenged §4" + recipient.getName() + "§r to a fight!");
         recipient.sendRawMessage("§4"+ sender.getName() + "§r has challenged you to a fight!");
         recipient.sendMessage(accept);
     }
 
     public static void StartFight(Player sender, Player recipient) {
+        //Logging
+        LogManager.PrintLn(sender.getName(), "FIGHT " + recipient.getName() + " (" + sender.getAddress().getHostName() + " vs " + recipient.getAddress().getHostName() + ")");
+        LogManager.PrintLn(recipient.getName(), "FIGHT " + sender.getName() + " (" + recipient.getAddress().getHostName() + " vs " + sender.getAddress().getHostName() + ")");
+
         //Find arena
         for(int i = 0; i < 8;i++) {
             if(cells[i]) continue;
@@ -70,6 +79,10 @@ public class FightManager {
     }
 
     public static void EndFight(Player winner, Player loser) {
+        //Logging
+        LogManager.PrintLn(winner.getName(), "WIN   " + loser.getName());
+        LogManager.PrintLn(loser.getName(), "LOSE  " + winner.getName());
+
         ConfigurationSection winnerData = PlayerDataManager.getPlayer(winner.getUniqueId());
         ConfigurationSection loserData = PlayerDataManager.getPlayer(loser.getUniqueId());
         winnerData.set("pvp.fighting", 0);
@@ -81,7 +94,7 @@ public class FightManager {
         PlayerDataManager.save();
 
         winner.setGameMode(GameMode.SPECTATOR);
-        winner.teleport(new Location(Bukkit.getWorld("world"), -0, 120, 0, 0, 0));
+        winner.teleport(new Location(Bukkit.getWorld("world"), 0, 120, 0, 0, 0));
         winner.sendMessage("You have defeated " + loser.getName() + "!");
         loser.sendMessage(winner.getName() + " has defeated you!");
 

@@ -26,6 +26,6 @@ public class Players implements Listener {
     public void onPlayerRespawn(PlayerPostRespawnEvent e) {
         Player p = e.getPlayer();
         p.setGameMode(GameMode.SPECTATOR);
-        p.teleport(new Location(Bukkit.getWorld("world"), -0, 120, 0, 0, 0));
+        p.teleport(new Location(Bukkit.getWorld("world"), 0, 120, 0, 0, 0));
     }
 }

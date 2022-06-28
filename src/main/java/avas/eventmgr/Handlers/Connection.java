@@ -1,6 +1,7 @@
 package avas.eventmgr.Handlers;
 
 import avas.eventmgr.Managers.FightManager;
+import avas.eventmgr.Managers.LogManager;
 import avas.eventmgr.Managers.PlayerDataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -20,9 +21,13 @@ public class Connection implements Listener {
         p.setGameMode(GameMode.SPECTATOR);
         p.teleport(new Location(Bukkit.getWorld("world"), -0, 120, 0, 0, 0));
         p.sendRawMessage("§6Welcome to the AVAS Events server.\nType /help for more information on how this works.");
+
+        LogManager.PrintLn(p.getName(), "JOIN");
     }
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        FightManager.DisconnectHandler(e.getPlayer());
+        Player p = e.getPlayer();
+        FightManager.DisconnectHandler(p);
+        LogManager.PrintLn(p.getName(), "QUIT");
     }
 }
