@@ -22,6 +22,5 @@ public class Inventory implements Listener {
         else if (e.getRawSlot() == 8) KitManager.ClearKit(p);
         else if (e.getRawSlot() < 18) KitManager.TakeItem(p, e.getRawSlot());
         else KitManager.RemoveItem(p, e.getRawSlot());
-        p.sendMessage("You clicked at slot " + e.getRawSlot());
     }
 }
