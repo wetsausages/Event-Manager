@@ -23,6 +23,8 @@ public class PlayerDataManager {
         player.set("pvp.kills", 0);
         player.set("pvp.lives", 5);
         player.set("pvp.fighting", 0);
+        player.set("pvp.kit.item", "");
+        player.set("pvp.kit.quantity", 0);
 
         save();
     }

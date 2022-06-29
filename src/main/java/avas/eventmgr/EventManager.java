@@ -1,10 +1,8 @@
 package avas.eventmgr;
 
-import avas.eventmgr.Commands.Fight;
-import avas.eventmgr.Commands.Help;
-import avas.eventmgr.Commands.StartFight;
-import avas.eventmgr.Commands.Stats;
+import avas.eventmgr.Commands.*;
 import avas.eventmgr.Handlers.Connection;
+import avas.eventmgr.Handlers.Inventory;
 import avas.eventmgr.Handlers.Players;
 import avas.eventmgr.Managers.LogManager;
 import avas.eventmgr.Managers.PlayerDataManager;
@@ -34,12 +32,13 @@ public final class EventManager extends JavaPlugin implements Listener {
         LogManager.logsDir = new File(getDataFolder() + "/logs");
         PlayerDataManager.load();
 
-        loadEvents(new Connection(), new Players());
+        loadEvents(new Connection(), new Players(), new Inventory());
 
         loadCommand("help", new Help());
         loadCommand("stats", new Stats());
         loadCommand("fight", new Fight());
         loadCommand("startfight", new StartFight());
+        loadCommand("kit", new Kit());
     }
 
     private void loadEvents(Listener... listeners) {

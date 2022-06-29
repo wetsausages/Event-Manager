@@ -56,6 +56,9 @@ public class FightManager {
         sender.setSaturation(20);
         recipient.setSaturation(20);
 
+        KitManager.Equip(sender);
+        KitManager.Equip(recipient);
+
         //Set 'fighting' flag
         ConfigurationSection p1 = PlayerDataManager.getPlayer((sender.getName()));
         ConfigurationSection p2 = PlayerDataManager.getPlayer((recipient.getName()));

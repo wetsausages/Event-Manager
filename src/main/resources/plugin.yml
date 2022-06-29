@@ -21,3 +21,7 @@ commands:
   startfight:
     description: Starts a fight when the challenged player accepts.
     usage: /startfight [player] [player]
+  kit:
+    description: Opens kit interface
+    usage: /kit
+    alias: k
