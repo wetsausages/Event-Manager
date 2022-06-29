@@ -14,7 +14,7 @@ public class Kit implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         ConfigurationSection playerData = PlayerDataManager.getPlayer(Bukkit.getPlayer(sender.getName()).getUniqueId());
         if (playerData.getInt("pvp.fighting") == 1) {
-            sender.sendMessage("Nobody can help you now.");
+            sender.sendMessage("Regear after the fight.");
             return true;
         }
 
