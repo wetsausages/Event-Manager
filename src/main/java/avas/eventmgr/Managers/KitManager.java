@@ -2,13 +2,15 @@ package avas.eventmgr.Managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class KitManager {
 
-    static Inventory inv = Bukkit.createInventory(null, 18, "Kit - (use /help)");
+    static Inventory inv = Bukkit.createInventory(null, 18, "Kit - (use /kit help)");
     static ItemStack[] items = {
             new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1),
             new ItemStack(Material.NETHERITE_SWORD, 1),
