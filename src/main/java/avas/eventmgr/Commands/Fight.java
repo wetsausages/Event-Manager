@@ -10,6 +10,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class Fight implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,7 +31,6 @@ public class Fight implements CommandExecutor {
 
         boolean online = false;
         for (Player player : Bukkit.getOnlinePlayers()) {
-            Bukkit.getLogger().info(player.getName() + ", " + args[0]);
             if(player == Bukkit.getPlayer(args[0])) online = true;
         }
         if(!online) {
@@ -57,7 +58,7 @@ public class Fight implements CommandExecutor {
         }
 
         //Run it
-        FightManager.RequestFight(Bukkit.getPlayer(sender.getName()), Bukkit.getPlayer(args[0]));
+        FightManager.RequestFight(Objects.requireNonNull(Bukkit.getPlayer(sender.getName())), Objects.requireNonNull(Bukkit.getPlayer(args[0])));
         return true;
     }
 }
