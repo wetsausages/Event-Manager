@@ -17,7 +17,7 @@ public class Fight implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         //Validation
         if(args.length < 1) {
-            sender.sendMessage("Invalid syntax: /fight [player]");
+            sender.sendMessage("Invalid syntax: /fight [player] or /fight cancel");
             return true;
         }
         if(sender == Bukkit.getPlayer(args[0])) {
@@ -29,16 +29,19 @@ public class Fight implements CommandExecutor {
             return true;
         }
 
-        boolean online = false;
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if(player == Bukkit.getPlayer(args[0])) online = true;
+        if(args[0].equals("cancel")){
+            FightManager.CancelFight(Objects.requireNonNull(Bukkit.getPlayer(sender.getName())));
+            return true;
         }
+
+        boolean online = false;
+        for (Player player : Bukkit.getOnlinePlayers()) if(player == Bukkit.getPlayer(args[0])) online = true;
         if(!online) {
             sender.sendMessage(args[0] + " is not online.");
             return true;
         }
 
-        ConfigurationSection senderData = PlayerDataManager.getPlayer(Bukkit.getPlayer(sender.getName()).getUniqueId());
+        ConfigurationSection senderData = PlayerDataManager.getPlayer(sender.getName());
         if(senderData.getInt("pvp.lives") < 1) {
             sender.sendMessage("You don't have any remaining lives!");
             return true;
@@ -54,6 +57,16 @@ public class Fight implements CommandExecutor {
         }
         if(recipientData.getInt("pvp.fighting") == 1) {
             sender.sendMessage(args[0] + " is already in a fight!");
+            return true;
+        }
+
+        if(senderData.getString("pvp.challenger") != "") {
+            sender.sendMessage("You're challenge to " + senderData.get("pvp.challenger") + " is still pending. Wait for them to accept or deny your request.");
+            return true;
+        }
+
+        if(recipientData.getString("pvp.challenger") != "") {
+            sender.sendMessage(args[0] + " is busy.");
             return true;
         }
 

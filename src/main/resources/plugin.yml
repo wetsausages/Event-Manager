@@ -1,7 +1,7 @@
 name: EventMgr
 version: '${project.version}'
 main: avas.eventmgr.EventManager
-api-version: 1.19
+api-version: 1.18
 authors: [ 69 ]
 description: Event manager for AVAS.cc
 website: avas.cc
@@ -18,10 +18,11 @@ commands:
     description: Challenges another player to a fight.
     usage: /fight [player]
     alias: f
-  startfight:
-    description: Starts a fight when the challenged player accepts.
-    usage: /startfight [player] [player]
   kit:
     description: Opens kit interface
     usage: /kit
     alias: k
+  reset:
+    description: Tickles your feet.
+    usage: /reset [player]
+    alias: r

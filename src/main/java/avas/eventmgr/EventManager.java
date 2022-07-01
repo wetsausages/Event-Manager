@@ -35,8 +35,8 @@ public final class EventManager extends JavaPlugin implements Listener {
         loadCommand("help", new Help());
         loadCommand("stats", new Stats());
         loadCommand("fight", new Fight());
-        loadCommand("startfight", new StartFight());
         loadCommand("kit", new Kit());
+        loadCommand("reset", new Reset());
     }
 
     private void loadEvents(Listener... listeners) {

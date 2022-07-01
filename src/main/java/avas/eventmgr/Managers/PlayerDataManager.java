@@ -23,8 +23,9 @@ public class PlayerDataManager {
         player.set("pvp.kills", 0);
         player.set("pvp.lives", 5);
         player.set("pvp.fighting", 0);
-        player.set("pvp.kit.item", "");
-        player.set("pvp.kit.quantity", 0);
+        player.set("pvp.ui", 0);
+        player.set("pvp.challenger", "");
+        player.set("pvp.kit", "0,5,8,12,13,6,14,11,7,11,11,11,11,11,7,7,7,7,11,11,11,11,7,7,7,7,7,15,8,8,9,9,9,9,9,9");
 
         save();
     }
